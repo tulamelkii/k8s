@@ -16,9 +16,31 @@ example - #UUID=979c17a8-dc9b-474e-974a-117f41a83976 none            swap    sw 
 modprobe overlay -v
 modprobe br_netfilter -v
 ```
-enable modules etc/modules 
+- enable modules etc/modules 
 
 ```
 echo "overlay" >> /etc/modules
 echo "br_netfilter" >> /etc/modules
+```
+- enable ip forvarding
+```
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+- Download public key
+```
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+```
+- add repo
+```
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+- update repo and install kubelet kubeadm kubectl and hold auto update ubelet kubeadm kubectl
+```
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+```
+- Enable the kubelet service before running kubeadm:
+```
+sudo systemctl enable --now kubelet
 ```
