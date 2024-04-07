@@ -1,4 +1,16 @@
-Install k8s
+- Install k8s
+```
 sudo apt update
 sudo apt upgrade
 sudo apt install software-properties-common apt-transport-https ca-certificates gnupg2 gpg sudo
+swapoff -a
+```
+- Coment swap in /etc/fstab
+``
+example - #UUID=979c17a8-dc9b-474e-974a-117f41a83976 none            swap    sw              0       0
+```
+- add modul overlay and br_netfilter( this modul provides support for safe data and filer networks)
+```
+modprobe overlay -v
+modprobe br_netfilter -v
+```
