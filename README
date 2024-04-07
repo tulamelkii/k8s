@@ -1,0 +1,4 @@
+Install k8s
+sudo apt update
+sudo apt upgrade
+sudo apt install software-properties-common apt-transport-https ca-certificates gnupg2 gpg sudo
