@@ -70,6 +70,8 @@ systemctl start crio.service
 ```
 - check dry-run init
 ```
+??? cri-o range 
+
 check preference and run without --dry-run
 kubeadm init --pod-network-cidr=10.100.0.0/16 --dry-run
 ```
