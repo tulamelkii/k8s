@@ -1,0 +1,5 @@
+[k8s]
+k8s ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s/virtualbox/private_key
+[k8s_w]
+k8s_w ansible_host=127.0.0.1 ansible_port=2200 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s_w/virtualbox/private_key
+
