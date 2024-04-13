@@ -1,0 +1,11 @@
+---
+- name: install k8s
+  hosts: all_hosts
+  become: yes
+  roles:
+    - programs
+    - ntp
+    - swap_off
+    - mod_forwd
+...
+
