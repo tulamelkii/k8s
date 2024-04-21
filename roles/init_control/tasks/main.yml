@@ -1,0 +1,22 @@
+---
+ - name: Check admin.conf file exists.
+   stat:
+     path: /etc/kubernetes/admin.conf
+   register: k8s_conf
+ - name:
+   block:
+     - name: initialize the cluster
+       command: kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.2.4
+     - name: create .kube directory
+       file:
+         path: $HOME/.kube
+         state: directory
+         mode: 0755
+     - name: copy admin.conf to user's kube config
+       copy:
+         src: /etc/kubernetes/admin.conf
+         dest: $HOME/.kube/config
+         remote_src: yes 
+   when: not k8s_conf.stat.exists 
+ 
+  

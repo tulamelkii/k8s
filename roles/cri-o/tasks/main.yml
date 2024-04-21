@@ -19,6 +19,7 @@
 - name: service cri-o
   service:
     name: crio
+    state: started    
     enabled: yes
 
 

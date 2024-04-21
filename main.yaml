@@ -10,5 +10,12 @@
     - k8s_repo
     - kub_kubeadm_kubctl
     - cri-o
+- name: control plane
+  hosts: k8s
+  become: yes
+  roles:
+    - init_control
+    - calico
+
 ...
 

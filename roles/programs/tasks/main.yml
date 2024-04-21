@@ -10,8 +10,9 @@
       - gpg
       - sudo
       - wget
+      - python3-jsonpatch
+      - python3-kubernetes
     update_cache: yes
-
 
 
 
