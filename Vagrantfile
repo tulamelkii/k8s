@@ -29,6 +29,19 @@ MACHINES = {
                 ]
  },
 
+:k8s_w2 => {
+        :box_name => "tulamelkii/VDebian12",
+        :box_version => "12.2.7",
+        :vm_name => "worker2",
+        :vm_mem => 4000,
+        :cpu => 2,
+        :net => [
+        {ip: '192.168.2.6', adapter: 3, netmask: "255.255.255.240"},
+        {ip: '192.168.56.13', adapter: 4},
+
+                ]
+ },
+
 
 }
 Vagrant.configure("2") do |config|
