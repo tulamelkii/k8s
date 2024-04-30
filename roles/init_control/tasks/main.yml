@@ -33,14 +33,6 @@
          src: /etc/kubernetes/admin.conf
          dest: $HOME/.kube/config
          remote_src: yes
-
-     - name: Recursively change ownership of a directory
-       file:
-         path:  $HOME/.kube
-         state: directory
-         recurse: yes
-         owner: vagrant
-         group: vagrant
    when: not k8s_conf.stat.exists 
  
 
