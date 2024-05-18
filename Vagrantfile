@@ -10,7 +10,7 @@ MACHINES = {
         :vm_mem => 4000,
         :cpu => 2,
         :net => [
-          {ip: '192.168.2.4', adapter: 2, netmask: "255.255.255.240"},
+          {ip: '192.168.2.4', adapter: 3, netmask: "255.255.255.240"},
           {ip: '192.168.56.11', adapter: 4},
 
                 ]
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
   MACHINES.each do |boxname, boxconfig|
     
     config.vm.define boxname do |box|
-   
+  
       box.vm.box = boxconfig[:box_name]
       box.vm.host_name = boxconfig[:vm_name]
       box.vm.box_version = boxconfig[:box_version]
