@@ -12,6 +12,7 @@
       - wget
       - python3-jsonpatch
       - python3-kubernetes
+      - open-iscsi
     update_cache: yes
 
 

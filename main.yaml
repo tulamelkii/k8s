@@ -16,13 +16,13 @@
   roles:
     - init_control
     - calico
+    - helm
+    - helm_install
 - name: worker node
   hosts: worker
   become: yes
   roles:
     - init_worker
-
-
 
 ...
 
