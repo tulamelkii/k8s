@@ -81,4 +81,5 @@ kubeadm init --pod-network-cidr=10.100.0.0/16 --dry-run
 kubeadm join 10.0.2.15:6443 --token giie7o.7lzvfdyxi7lyfygv --discovery-token-ca-cert-hash sha256:58f904203d7d5baf5e3ad2d9d705f7371aa3c7d11c1bbbea3954515600ecada1 
 ```
 kubectl label nodes worker kubernetes.io/role=worker(add_lables worker) 
+kubectl port-forward svc/my-release-grafana --address 0.0.0.0 3000:3000
 
