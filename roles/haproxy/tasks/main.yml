@@ -1,0 +1,30 @@
+---
+# tasks file for haproxy
+#
+- name:
+  ansible.builtin.apt:
+    update_cache: yes
+    name:
+      - haproxy
+
+- name:
+  template:
+    src: haproxy
+    dest: /etc/haproxy/haproxy.cfg
+
+
+- name: start haproxy
+  systemd:
+    name: haproxy
+    state: restarted
+    daemon_reload: true
+    enabled: yes
+
+
+
+- name: enable forwarding  
+  sysctl:
+    name: net.ipv4.conf.all.forwarding
+    value: '1'
+    state: present 
+

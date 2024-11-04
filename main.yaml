@@ -1,6 +1,12 @@
 ---
+- name: install haproy
+  hosts: ha_prox
+  become: yes
+  roles:
+    - haproxy 
+    - keepalived 
 - name: install k8s
-  hosts: all_hosts
+  hosts: hosts
   become: yes
   roles:
     - programs
@@ -14,11 +20,17 @@
   hosts: master
   become: yes
   roles:
-    - init_control
+    - control
     - calico
     - helm
     - helm_install
-- name: worker node
+
+- name: control plane
+  hosts: control
+  become: yes
+  roles:
+    - init_control
+- name: workers
   hosts: worker
   become: yes
   roles:

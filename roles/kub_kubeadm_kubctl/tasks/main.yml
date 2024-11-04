@@ -11,6 +11,8 @@
   lineinfile:
     path: /etc/default/kubelet
     line: KUBELET_EXTRA_ARGS=--node-ip={{ ansible_enp0s9.ipv4.address }}
+    #  line: KUBELET_EXTRA_ARGS=--node-ip={{ ansible_eth0.ipv4.address }}
+
     create: yes
 - name: Restart kubelet
   service:

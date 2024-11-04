@@ -1,0 +1,19 @@
+---
+# tasks file for keepalived
+#
+- name:
+  ansible.builtin.apt:
+    update_cache: yes
+    name:
+      - keepalived
+
+- name: 
+  template:
+    src: keepalived
+    dest: /etc/keepalived/keepalived.conf
+
+- name: start keepalived
+  systemd:
+    name: keepalived
+    state: started
+    enabled: yes

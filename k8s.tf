@@ -11,19 +11,19 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 
-#resource "yandex_iam_service_account" "local" { 
-#   name        =  "local"
-#   folder_id   =  "b1g89cjo0roopb2d5s14"
-#   description =  "service account from folder k8s-terra"
-#}         
-#resource "yandex_resourcemanager_folder_iam_member" "admin" {
-#   folder_id   = "b1g89cjo0roopb2d5s14"
-#   role        = "admin"
-#   member      = "serviceAccount:${ yandex_iam_service_account.local.id }"
-#   depends_on  = [ yandex_iam_service_account.local ]
-# }
-#
-#resource "yandex_vpc_address" "vpc_k8s_pub_ip" {
+resource "yandex_iam_service_account" "local" { 
+   name        =  "local"
+   folder_id   =  "b1g89cjo0roopb2d5s14"
+   description =  "service account from folder k8s-terra"
+}         
+resource "yandex_resourcemanager_folder_iam_member" "admin" {
+   folder_id   = "b1g89cjo0roopb2d5s14"
+   role        = "admin"
+   member      = "serviceAccount:${ yandex_iam_service_account.local.id }"
+   depends_on  = [ yandex_iam_service_account.local ]
+ }
+
+resource "yandex_vpc_address" "vpc_k8s_pub_ip" {
 #   name        = "pubip"
 #   folder_id   = "b1g89cjo0roopb2d5s14"
 #   external_ipv4_address {

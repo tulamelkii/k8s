@@ -19,4 +19,12 @@
     state: restarted
     enabled: true
 
+- name: create hosts
+  template:
+    src: hosts
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: '644'
+
 ...

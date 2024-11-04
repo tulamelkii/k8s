@@ -1,0 +1,16 @@
+---
+# tasks file for control
+#
+#- name: join cluster
+#  shell:  "{{ join_command }} --control-plane >> node_join.log"
+#  args:
+#    chdir: $HOME
+#    creates: node_joined.txt
+#
+#
+   - name: join control-plane nodes
+     shell: "{{join_command_raw}} --control-plane --certificate-key {{control_plane_certkey}}"
+     register: joinmaster
+    # with_items: "{{ groups['control'] }}"
+   - debug: msg={{joinmaster}}
+   - local_action: copy content=((joinmaster.stdout}} dest="./join_controlplane_node"

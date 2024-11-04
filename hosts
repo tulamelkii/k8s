@@ -1,20 +1,51 @@
 [k8s]
-k8s ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s/virtualbox/private_key
-[k8s_w]
-k8s_w ansible_host=127.0.0.1 ansible_port=2200 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s_w/virtualbox/private_key
-[k8s_w2]
-k8s_w2 ansible_host=127.0.0.1 ansible_port=2201 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s_w2/virtualbox/private_key
+k8s ansible_host=127.0.0.1 ansible_port=2222  ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s/virtualbox/private_key
 
-[all_hosts:children]
+[k8s_w]
+k8s_w ansible_host=127.0.0.1 ansible_port=2201 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s_w/virtualbox/private_key
+
+[k8s_w2] 
+k8s_w2 ansible_host=127.0.0.1 ansible_port=2202 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s_w2/virtualbox/private_key
+
+[ha1]
+ha1 ansible_host=127.0.0.1 ansible_port=2203 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/ha1/virtualbox/private_key
+[ha2]
+ha2 ansible_host=127.0.0.1 ansible_port=2204 ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/ha2/virtualbox/private_key
+
+
+
+
+[k8s2]
+k8s2 ansible_host=127.0.0.1 ansible_port=2200  ansible_user=vagrant ansible_private_key_file=/home/localadm/github/k8s/.vagrant/machines/k8s2/virtualbox/private_key
+
+
+
+
+#[k8s_w]
+#k8s_w ansible_host=51.250.84.82 ansible_user=debian ansible_private_key_file=/home/localadm/.ssh/id_ed25519.pub
+#[k8s_w2]
+#k8s_w2 ansible_host=158.160.122.102 ansible_user=debian ansible_private_key_file=/home/localadm/.ssh/id_ed25519.pub
+
+
+
+
+
+[hosts:children]
 k8s
 k8s_w
 k8s_w2
+k8s2
 
 [master:children]
 k8s
+
+[control:children]
+k8s2
 
 [worker:children]
 k8s_w
 k8s_w2
 
-
+[ha_prox:children]
+ha1 
+ha2 

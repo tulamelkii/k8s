@@ -3,8 +3,16 @@
 #
 
 - name: join cluster
-  shell:  "{{ join_command }} >> node_join.log"
+  shell:  "{{join_command}} >> node_join.log"
   args:
     chdir: $HOME
     creates: node_joined.txt
+
+#- name: Join worker nodes to cluster
+#  shell: "{{ hostvars[groups['worker'][0]]['join_command'] }} >> node_join.log"
+#  args:
+#    chdir: $HOME
+#    creates: node_join.log
+#  with_items: "{{ groups['worker'] }}"
+
 
