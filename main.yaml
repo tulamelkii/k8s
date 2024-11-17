@@ -6,7 +6,7 @@
     - haproxy 
     - keepalived 
 - name: install k8s
-  hosts: hosts
+  hosts: all_hosts
   become: yes
   roles:
     - programs

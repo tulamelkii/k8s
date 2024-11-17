@@ -8,7 +8,9 @@
 
 
    - name: join control-plane nodes
-     shell: "{{join_command}} --control-plane --certificate-key {{control_plane_certkey}}"
+     shell: "{{ join_command }} --control-plane --certificate-key {{ control_plane_certkey }}"
+   #  shell: "{{ hostwars[groups['all_hosts'][0]]['join_command'] }} --control-plane --certificate-key {{ control_plane_certkey }}"
+
      args:
        chdir: $HOME
        creates: node_joined.txt

@@ -30,7 +30,7 @@ k8s2 ansible_host=127.0.0.1 ansible_port=2200  ansible_user=vagrant ansible_priv
 
 
 
-[hosts:children]
+[all_hosts:children]
 k8s
 k8s_w
 k8s_w2
