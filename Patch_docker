@@ -1,0 +1,23 @@
+#!/bin/bash
+
+for ns in $(kubectl get namespaces |grep -v NAME|awk '{print $1}')
+do
+   kubectl create secret docker-registry docker.registry \
+       --docker-username=<MyAccountName> \
+       --docker-password='MyDockerHubPassword' -n $ns
+done
+
+    Patch all the dynamic service accounts in all the namesapces with the secret you created in step 1
+--------------------------------------------------------------------------------------------------
+for ns in $(kubectl get namespaces|grep -v NAME|awk '{print $1}')
+do
+        for sa in $(kubectl -n $ns get sa|grep -v SECRETS|awk '{print $1}')
+        do
+           kubectl patch serviceaccount $sa -p '{"imagePullSecrets": [{"name": "docker.registry"}]}' -n $ns
+           if [ $? -eq 0 ]; then
+                echo $ns $sa patched
+           else
+                echo Error patching $ns $sa
+           fi
+        done
+done
